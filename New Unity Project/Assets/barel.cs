@@ -1,11 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class barel : MonoBehaviour
 {
-    int m_size
-        int m_gallons
+    public int m_size;
+    public int m_gallons;
+    public void OnMove(InputValue movementValue)
+    {
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        Debug.Log(movementVector.x + "," + movementVector.y);
+        if (movementVector.y==1)
+        {
+            fill((int)(m_size*0.1));
+        }
+        if (movementVector.y == -1)
+            drain((int)(m_size*0.1));
+    }
          public void fill(int gallons)
     {
         m_gallons += gallons;
